@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<!-- <p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p> -->
+
+<html>
+  <head>
+    <title>DeviseProject</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+
+  <% if !current_user %>
+    <%= link_to "Sign up", new_user_registration_path %>
+    <%= link_to "Sign in", new_user_session_path %>
+  <% else %>
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+    <%= link_to "All_users", users_path %>
+      <%= current_user.email %>
+  <% end %>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>

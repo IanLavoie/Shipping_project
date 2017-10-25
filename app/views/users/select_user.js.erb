@@ -1,0 +1,13 @@
+// ======= check selectors =======
+console.log("selected user div: ", $('#user-<%= params[:id] %>').attr('id'))      // user banner div
+console.log("user buttons div: ", $('#orig-dest-<%= params[:id] %>').attr('id')) // user buttons container
+var jobCount = '<%= @users.length %>'                                            // count number of users
+console.log("userCount: ", userCount);
+for (var i = 1; i < jobCount + 1; i++) {
+    $('#user-' + i).css('background-color', 'lavender');     	// change to normal bg-color
+    $('#orig-dest-' + i).css('visibility', 'hidden')        	// hide buttons
+}
+
+// ======= hilite selected job mousing over the job seeing the number at the bottom using a chaning color .js and Ruby=======
+$('#user-<%= params[:id] %>').css('background-color', 'thistle')     // change to hilite bg-color
+$('#orig-dest-<%= params[:id] %>').css('visibility', 'visible')     // show buttons
