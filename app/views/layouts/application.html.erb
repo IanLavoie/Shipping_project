@@ -12,29 +12,38 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-
-  <% if !current_user %>
-    <%= link_to "Sign up", new_user_registration_path %>
-    <%= link_to "Sign in", new_user_session_path %>
-  <% else %>
-    <%= link_to 'Photos', photos_path %>
-    <%= link_to 'Upload Your Photo', new_photo_path %>
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-    <%= link_to "All_users", users_path %>
-      <%= current_user.email %>
-  <% end %>
-
   <body>
-    <!-- == alert container == -->
-        <div class="container">
-          <% flash.each do |key, value| %>
-            <div class="alert alert-<%= key %>">
-              <%= value %>
-            </div>
-          <% end %>
-        </div>
-
-    <%= yield %>
+  <h1 class="business_title">Cargo Shipping</h1>
+  <div class="nav_bar">
+    <div class="nav_btn">
+      <%= link_to "Home", home_path %>
+    </div>
+    <div class="nav_btn">
+      <%= link_to "Boats", home_path %>
+    </div>
+    <div class="nav_btn">
+      <%= link_to "Ports", home_path %>
+    </div>
+    <div class="nav_btn">
+      <%= link_to "Jobs", home_path %>
+    </div>
+    <div class="nav_btn">
+      <%= link_to "Profile", home_path %>
+    </div>
+  </div>
+  <%= yield %>
+  <div class="person">
+    <% if !current_user %>
+      <%= link_to "Sign up", new_user_registration_path %>
+      <%= link_to "Sign in", new_user_session_path %>
+    <% else %>
+      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+      <%= link_to "All_users", users_path %>
+        <%= current_user.email %>
+    <% end %>
+  </div>
+    <div id="footer">
+      <h1 class="contact_info"><p class="contact">Contact Us:</p>Contact Us: Email: Weshipawesomestuff@aol.com | Phone:1800-867-5309 | Fax: "Fax info" | Mailing address: 1600 Pennsylvania Ave NW, Washington, DC 20500</h1>
+    </div>
   </body>
 </html>
