@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171026175149) do
+ActiveRecord::Schema.define(version: 20171026201423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,10 +38,12 @@ ActiveRecord::Schema.define(version: 20171026175149) do
   end
 
   create_table "job_boats", force: :cascade do |t|
-    t.integer "job_id"
-    t.string "boat_id_integer"
+    t.bigint "job_id"
+    t.bigint "boat_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["boat_id"], name: "index_job_boats_on_boat_id"
+    t.index ["job_id"], name: "index_job_boats_on_job_id"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -87,6 +89,8 @@ ActiveRecord::Schema.define(version: 20171026175149) do
     t.string "lastname"
     t.string "username"
     t.string "password"
+    t.string "user_type"
+    t.bigint "address_id"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -99,10 +103,14 @@ ActiveRecord::Schema.define(version: 20171026175149) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "boats", "photos"
+  add_foreign_key "job_boats", "boats"
+  add_foreign_key "job_boats", "jobs"
   add_foreign_key "ports", "photos"
+  add_foreign_key "users", "addresses"
 end

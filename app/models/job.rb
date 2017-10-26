@@ -4,5 +4,4 @@ class Job < ApplicationRecord
   belongs_to :origin, :class_name => 'Port'
   belongs_to :destination, :class_name => 'Port'
   has_many :ports
-
 end
