@@ -1,2 +1,4 @@
 _Dev
-tmp
+tmp/*
+secrets.yml
+log/*
