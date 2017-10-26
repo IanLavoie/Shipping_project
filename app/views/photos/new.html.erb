@@ -1,0 +1,26 @@
+<!-- ====== views/photos/new.html.erb ======= -->
+
+
+<%= form_with(model: @photo, url: user_photos_path(current_user[:id]), local: true) do |f| %>
+    <%= render 'shared/errors', object: @photo %>
+    <div class="form-group">
+      <%= f.label :content_type %>
+      <%= f.text_field :content_type, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :image %>
+      <%= f.file_field :image, class: 'form-control'%>
+    </div>
+    <%= f.submit 'Upload', class: 'btn btn-primary' %>
+  <% end %>
+
+
+
+
+<!-- modify new.html.erb file with a select box for content-type attribute
+	• see Rails Guides: http://guides.rubyonrails.org/form_helpers.html#making-select-boxes-with-ease
+		# can use this to make radio buttons or select boxes -->

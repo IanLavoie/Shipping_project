@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get "/select_user/:id" => "user#select_user"
 
   devise_for :users
-  resources :users, :only => [:index, :show]
+  resources :photos
+  resources :jobs
+  # resources :boats
+  # resources :ports
 
 end

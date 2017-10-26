@@ -10,10 +10,77 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023192149) do
+ActiveRecord::Schema.define(version: 20171026175149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "country"
+    t.string "region"
+    t.string "city"
+    t.integer "zip_code"
+    t.string "street"
+    t.integer "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "boats", force: :cascade do |t|
+    t.string "name"
+    t.integer "location"
+    t.bigint "photo_id"
+    t.integer "capacity"
+    t.integer "speed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["photo_id"], name: "index_boats_on_photo_id"
+  end
+
+  create_table "job_boats", force: :cascade do |t|
+    t.integer "job_id"
+    t.string "boat_id_integer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.bigint "client_id"
+    t.bigint "manager_id"
+    t.bigint "origin_id"
+    t.bigint "destination_id"
+    t.integer "containers"
+    t.integer "price_per_cont"
+    t.decimal "total_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_jobs_on_client_id"
+    t.index ["destination_id"], name: "index_jobs_on_destination_id"
+    t.index ["manager_id"], name: "index_jobs_on_manager_id"
+    t.index ["origin_id"], name: "index_jobs_on_origin_id"
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string "title"
+    t.string "caption"
+    t.string "content_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  create_table "ports", force: :cascade do |t|
+    t.string "name"
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.bigint "photo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["photo_id"], name: "index_ports_on_photo_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "firstname"
@@ -36,4 +103,6 @@ ActiveRecord::Schema.define(version: 20171023192149) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "boats", "photos"
+  add_foreign_key "ports", "photos"
 end

@@ -1,0 +1,2 @@
+class JobBoat < ApplicationRecord
+end

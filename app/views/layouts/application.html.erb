@@ -5,7 +5,7 @@
 
 <html>
   <head>
-    <title>DeviseProject</title>
+    <title>Shipping_project</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -17,6 +17,8 @@
   <% if !current_user %>
     <%= link_to "Sign up", new_user_registration_path %>
     <%= link_to "Sign in", new_user_session_path %>
+    <%= link_to 'Photos', photos_path %>
+    <%= link_to 'Upload Your Photo', new_photo_path %>
   <% else %>
     <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
     <%= link_to "All_users", users_path %>
@@ -24,6 +26,15 @@
   <% end %>
 
   <body>
+    <!-- == alert container == -->
+        <div class="container">
+          <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>">
+              <%= value %>
+            </div>
+          <% end %>
+        </div>
+
     <%= yield %>
   </body>
 </html>
