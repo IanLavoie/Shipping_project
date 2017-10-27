@@ -11,7 +11,29 @@
     </div>
   <% end %>
 
+  <% selected_photo = nil %>
+  <% if @boat[:photo_id] %>
+      <% selected_photo = @boat[:photo_id] %>
+  <% end %>
+
+  <% photo_title_ids = [] %>
+  <% @photos.each do |photo| %>
+      <% photo_title_ids << [photo[:title], photo[:id]] %>
+  <% end %>
+  <% puts "photo_title_ids: #{photo_title_ids}.inspect" %>
+
+
   <div class="actions">
+      <%= form.label :name %><br />
+      <%= form.text_field :name, autofocus: true %><br />
+      <%= form.label :location %><br />
+      <%= form.text_field :location, autofocus: true %><br />
+      <%= form.label :capacity %><br />
+      <%= form.number_field :capacity, autofocus: true %><br />
+      <%= form.label :speed %><br />
+      <%= form.number_field :speed, autofocus: true %><br><br>
+      <%= form.select(:photo_id, options_for_select(photo_title_ids, selected_photo)) %></p>
+
     <%= form.submit %>
   </div>
 <% end %>

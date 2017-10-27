@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   get "/home" => "users#home"
   get "/select_user/:id" => "user#select_user"
 
+
   devise_for :users
-  resources :users, :only => [:index, :show]
+  resources :users, only: [:show, :edit, :update, :index]
   resources :photos
   resources :jobs
   resources :boats
