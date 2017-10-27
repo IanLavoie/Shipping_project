@@ -28,15 +28,14 @@ class BoatsController < ApplicationController
   # POST /boats
   # POST /boats.json
   def create
+    puts "\n******* create *******"
     @boat = Boat.new(boat_params)
 
     respond_to do |format|
-      if @boat.save
+      if @boat.save(boat_params)
         format.html { redirect_to @boat, notice: 'Boat was successfully created.' }
-        format.json { render :show, status: :created, location: @boat }
       else
         format.html { render :new }
-        format.json { render json: @boat.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,6 +43,7 @@ class BoatsController < ApplicationController
   # PATCH/PUT /boats/1
   # PATCH/PUT /boats/1.json
   def update
+    puts "\n******* update *******"
     respond_to do |format|
       if @boat.update(boat_params)
         format.html { redirect_to @boat, notice: 'Boat was successfully updated.' }

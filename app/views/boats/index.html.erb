@@ -5,13 +5,24 @@
 <table>
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Capacity</th>
+      <th>Speed</th>
+      <th>Photo</th>
+      <th>Edit</th>
+      <th>Delete</th>
     </tr>
   </thead>
 
   <tbody>
     <% @boats.each do |boat| %>
       <tr>
+        <td><%= boat[:name] %></td>
+        <td><%= boat[:location] %></td>
+        <td><%= boat[:capacity] %></td>
+        <td><%= boat[:speed] %></td>
+        <td><%= boat[:photo_id] %></td>
         <td><%= link_to 'Show', boat_path(boat) %></td>
         <td><%= link_to 'Edit', edit_boat_path(boat) %></td>
         <td><%= link_to 'Destroy', boat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -22,4 +33,4 @@
 
 <br>
 
-<%= link_to 'New Boat', new_boat_path %>
+<%= link_to 'Add a new boat', new_boat_path %>

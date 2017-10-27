@@ -20,7 +20,7 @@
   <% @photos.each do |photo| %>
       <% photo_title_ids << [photo[:title], photo[:id]] %>
   <% end %>
-  <% puts "photo_title_ids: #{photo_title_ids}.inspect" %>
+  <% puts "photo_title_ids: #{photo_title_ids.inspect}" %>
 
 
   <div class="actions">

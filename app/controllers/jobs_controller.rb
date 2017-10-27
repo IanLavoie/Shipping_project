@@ -22,7 +22,7 @@ class JobsController < ApplicationController
 
   # GET /jobs/1/edit
   def edit
-    puts "\n******* edit *******"
+    puts "\n******* edit jobs *******"
   end
 
   # POST /jobs
@@ -46,7 +46,6 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1.json
   def update
       puts "\n******* update *******"
-
       respond_to do |format|
           if @job.update(job_params)
               puts "******* JOB UPDATED *******"
