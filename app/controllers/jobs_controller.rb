@@ -18,11 +18,15 @@ class JobsController < ApplicationController
   def new
     puts "\n******* new job*******"
     @job = Job.new
+    @users = User.all
+    @ports = Port.all
   end
 
   # GET /jobs/1/edit
   def edit
     puts "\n******* edit jobs *******"
+    @users = User.all
+    @ports = Port.all
   end
 
   # POST /jobs

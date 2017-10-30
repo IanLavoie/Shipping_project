@@ -1,44 +1,60 @@
-<%= form_with(model: job, local: true) do |form| %>
-  <% if job.errors.any? %>
+<%= form_with(model: @job, local: true) do |form| %>
+  <% if @job.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
+      <h2><%= pluralize(@job.errors.count, "error") %> prohibited this @job from being saved:</h2>
 
       <ul>
-      <% job.errors.full_messages.each do |message| %>
+      <% @job.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <% selected_job = nil %>
-  <% if @jobs[:job_id] %>
-      <% selected_job = @job[:client_id] %>
+  <% selected_client = nil %>
+  <% if @job[:client_id] %>
+      <% selected_client = @job[:client_id] %>
+  <% end %>
+  <% selected_manager = nil %>
+  <% if @job[:manager_id] %>
+      <% selected_manager = @job[:manager_id] %>
+  <% end %>
+  <% selected_origin = nil %>
+  <% if @job[:origin_id] %>
+      <% selected_origin = @job[:origin_id] %>
+  <% end %>
+  <% selected_destination = nil %>
+  <% if @job[:destination_id] %>
+      <% selected_destination = @job[:destination_id] %>
   <% end %>
 
-  <% job_ids = [] %>
-  <% @jobs.each do |job| %>
-      <% job_ids << job[job[:id]] %>
+  <% user_ids = [] %>
+  <% @users.each do |user| %>
+      <% user_ids << [user[:firstname], user[:id]] %>
   <% end %>
-  <% puts "job_ids: #{job_ids}.inspect" %>
+  <% puts "user_ids: #{user_ids.inspect}" %>
+  <% port_ids = [] %>
+  <% @ports.each do |port| %>
+      <% port_ids << [port[:name], port[:id]] %>
+  <% end %>
+  <% puts "port_ids: #{port_ids.inspect}" %>
+
 
   <div class="actions">
     <%= form.label :client_id %><br />
-    <%= form.bigint_field :client_id, autofocus: true %><br />
+    <%= form.select(:client_id, options_for_select(user_ids, selected_client)) %></p>
     <%= form.label :manager_id %><br />
-    <%= form.bigint_field :manager_id, autofocus: true %><br />
+    <%= form.select(:manager_id, options_for_select(user_ids, selected_manager)) %></p>
     <%= form.label :origin_id %><br />
-    <%= form.bigint_field :origin_id, autofocus: true %><br />
+    <%= form.select(:origin_id, options_for_select(port_ids, selected_origin)) %></p>
     <%= form.label :destination_id %><br />
-    <%= form.bigint_field :destination_id, autofocus: true %>
+    <%= form.select(:destination_id, options_for_select(port_ids, selected_destination)) %></p>
     <%= form.label :containers %><br />
-    <%= form.integer_field :containers, autofocus: true %>
+    <%= form.number_field :containers, autofocus: true %><br />
     <%= form.label :price_per_cont %><br />
-    <%= form.integer_field :price_per_cont, autofocus: true %>
+    <%= form.number_field :price_per_cont, autofocus: true %><br />
     <%= form.label :total_price %><br />
-    <%= form.decimal_field :total_price, autofocus: true %>
-    <%= form.label :photo_id %><br />
-    <%= form.select(:photo_id, options_for_select(photo_title_ids, selected_photo)) %></p>
+    <%= form.number_field :total_price, autofocus: true %>
 
     <%= form.submit %>
   </div>
