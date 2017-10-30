@@ -11,7 +11,35 @@
     </div>
   <% end %>
 
+  <% selected_job = nil %>
+  <% if @jobs[:job_id] %>
+      <% selected_job = @job[:client_id] %>
+  <% end %>
+
+  <% job_ids = [] %>
+  <% @jobs.each do |job| %>
+      <% job_ids << job[job[:id]] %>
+  <% end %>
+  <% puts "job_ids: #{job_ids}.inspect" %>
+
   <div class="actions">
+    <%= form.label :client_id %><br />
+    <%= form.bigint_field :client_id, autofocus: true %><br />
+    <%= form.label :manager_id %><br />
+    <%= form.bigint_field :manager_id, autofocus: true %><br />
+    <%= form.label :origin_id %><br />
+    <%= form.bigint_field :origin_id, autofocus: true %><br />
+    <%= form.label :destination_id %><br />
+    <%= form.bigint_field :destination_id, autofocus: true %>
+    <%= form.label :containers %><br />
+    <%= form.integer_field :containers, autofocus: true %>
+    <%= form.label :price_per_cont %><br />
+    <%= form.integer_field :price_per_cont, autofocus: true %>
+    <%= form.label :total_price %><br />
+    <%= form.decimal_field :total_price, autofocus: true %>
+    <%= form.label :photo_id %><br />
+    <%= form.select(:photo_id, options_for_select(photo_title_ids, selected_photo)) %></p>
+
     <%= form.submit %>
   </div>
 <% end %>

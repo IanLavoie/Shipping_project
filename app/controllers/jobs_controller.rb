@@ -4,51 +4,57 @@ class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.json
   def index
+    puts "\n******* index all jobs *******"
     @jobs = Job.all
   end
 
   # GET /jobs/1
   # GET /jobs/1.json
   def show
+    puts "\n******* show jobs *******"
   end
 
   # GET /jobs/new
   def new
+    puts "\n******* new job*******"
     @job = Job.new
   end
 
   # GET /jobs/1/edit
   def edit
+    puts "\n******* edit jobs *******"
   end
 
   # POST /jobs
   # POST /jobs.json
   def create
-    @job = Job.new(job_params)
+      puts "\n******* create *******"
+      @job = Job.new(job_params)
 
-    respond_to do |format|
-      if @job.save
-        format.html { redirect_to @job, notice: 'Job was successfully created.' }
-        format.json { render :show, status: :created, location: @job }
-      else
-        format.html { render :new }
-        format.json { render json: @job.errors, status: :unprocessable_entity }
+      respond_to do |format|
+          if @job.save(job_params)
+              puts "******* JOB SAVED *******"
+              format.html { redirect_to @job, notice: 'Job was successfully created.' }
+          else
+              puts "******* save FAILED *******"
+              format.html { render :edit }
+          end
       end
-    end
   end
 
   # PATCH/PUT /jobs/1
   # PATCH/PUT /jobs/1.json
   def update
-    respond_to do |format|
-      if @job.update(job_params)
-        format.html { redirect_to @job, notice: 'Job was successfully updated.' }
-        format.json { render :show, status: :ok, location: @job }
-      else
-        format.html { render :edit }
-        format.json { render json: @job.errors, status: :unprocessable_entity }
+      puts "\n******* update *******"
+      respond_to do |format|
+          if @job.update(job_params)
+              puts "******* JOB UPDATED *******"
+              format.html { redirect_to @job, notice: 'Job was successfully updated.' }
+          else
+              puts "******* update FAILED *******"
+              format.html { render :edit }
+          end
       end
-    end
   end
 
   # DELETE /jobs/1
@@ -56,7 +62,7 @@ class JobsController < ApplicationController
   def destroy
     @job.destroy
     respond_to do |format|
-      format.html { redirect_to jobs_url, notice: 'Job was successfully destroyed.' }
+      format.html { redirect_to @job, notice: 'Job was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +75,7 @@ class JobsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params.fetch(:job, {})
+        puts "\n******* job_params *******"
+        params.require(:job).permit({boat_ids: []}, :origin_id, :destination_id, :client_id, :manager_id, :name)
     end
 end

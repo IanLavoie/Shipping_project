@@ -38,13 +38,14 @@
       <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
       <%= link_to "All_users", users_path %>
         <%= current_user.email %>
+      </div>
     <% end %>
   </div>
-  <div id="footer">
-    <h1 class="contact_info"><p class="contact">Contact Us:</p>Contact Us: Email: Weshipawesomestuff@aol.com | Phone:1800-867-5309 | Fax: "Fax info" | Mailing address: 1600 Pennsylvania Ave NW, Washington, DC 20500</h1>
-  </div>
   <div id="yield_container">
-    <%= yield %>
+  <%= yield %>
   </div>
+    <div id="footer">
+      <h1 class="contact_info"><p class="contact">Contact Us:</p>Contact Us: Email: Weshipawesomestuff@aol.com | Phone:1800-867-5309 | Fax: "Fax info" | Mailing address: 1600 Pennsylvania Ave NW, Washington, DC 20500</h1>
+    </div>
   </body>
 </html>
