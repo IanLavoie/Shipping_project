@@ -33,20 +33,24 @@
       <%= link_to "Sign up", new_user_registration_path %>
       <%= link_to "Sign in", new_user_session_path %>
     <% else %>
+
       <div class="nav_btn">
         <%= link_to "Profile", user_path(current_user) %>
         <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
         <%= link_to "All_users", users_path %>
         <%= link_to "Photos", new_photo_path %>
+
         <%= current_user.email %>
       </div>
     <% end %>
   </div>
+
   <div id="yield_container">
   <%= yield %>
   </div>
     <div id="footer">
       <h1 class="contact_info"><p class="contact">Contact Us:</p>Contact Us: Email: Weshipawesomestuff@aol.com | Phone:1800-867-5309 | Fax: "Fax info" | Mailing address: 1600 Pennsylvania Ave NW, Washington, DC 20500</h1>
     </div>
+
   </body>
 </html>

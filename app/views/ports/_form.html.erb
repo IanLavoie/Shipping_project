@@ -11,7 +11,32 @@
     </div>
   <% end %>
 
+  <% selected_photo = nil %>
+  <% if @port[:photo_id] %>
+       <% selected_photo = @port[:photo_id] %>
+   <% end %>
+   <% photo_name_ids = [] %>
+   <% @photos.each do |photo| %>
+       <% photo_name_ids << [photo[:title], photo[:id]] %>
+   <% end %>
+   <% puts "photo_name_ids: #{photo_name_ids.inspect}" %>
   <div class="actions">
+    Photo: <%= form.select(:photo_id, options_for_select(photo_name_ids, selected_photo)) %>
+  </div>
+
+  <div class="actions">
+    <div class="field">
+      <%= label :name, :name %> <br />
+      <%= form.text_field :name %> <br>
+    </div>
+    <div class="field">
+      <%= label :latitude, :latitude %><br />
+      <%= form.number_field :latitude %> <br>
+    </div>
+    <div class="field">
+      <%= label :longitude, :longitude %><br />
+      <%= form.number_field :longitude %> <br>
+    </div>
     <%= form.submit %>
   </div>
 <% end %>
