@@ -19,31 +19,32 @@
       <%= link_to "Home", home_path %>
     </div>
     <div class="nav_btn">
-      <%= link_to "Boats", home_path %>
+      <%= link_to "Boats", boats_path %>
     </div>
     <div class="nav_btn">
-      <%= link_to "Ports", home_path %>
+      <%= link_to "Ports", ports_path %>
     </div>
     <div class="nav_btn">
-      <%= link_to "Jobs", home_path %>
-    </div>
-    <div class="nav_btn">
-      <%= link_to "Profile", home_path %>
+      <%= link_to "Jobs", jobs_path %>
     </div>
   </div>
-  <%= yield %>
   <div class="person">
     <% if !current_user %>
       <%= link_to "Sign up", new_user_registration_path %>
       <%= link_to "Sign in", new_user_session_path %>
     <% else %>
+      <%= link_to "Photos", photos_path %> <br>
+      <%= link_to "Profile", user_path(current_user) %> <br>
       <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
       <%= link_to "All_users", users_path %>
         <%= current_user.email %>
     <% end %>
   </div>
-    <div id="footer">
-      <h1 class="contact_info"><p class="contact">Contact Us:</p>Contact Us: Email: Weshipawesomestuff@aol.com | Phone:1800-867-5309 | Fax: "Fax info" | Mailing address: 1600 Pennsylvania Ave NW, Washington, DC 20500</h1>
-    </div>
+  <div id="footer">
+    <h1 class="contact_info"><p class="contact">Contact Us:</p>Contact Us: Email: Weshipawesomestuff@aol.com | Phone:1800-867-5309 | Fax: "Fax info" | Mailing address: 1600 Pennsylvania Ave NW, Washington, DC 20500</h1>
+  </div>
+  <div id="yield_container">
+    <%= yield %>
+  </div>
   </body>
 </html>

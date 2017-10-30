@@ -10,11 +10,13 @@ class PortsController < ApplicationController
   # GET /ports/1
   # GET /ports/1.json
   def show
+    @ports = Port.all
   end
 
   # GET /ports/new
   def new
     @port = Port.new
+    @photos = Photo.all
   end
 
   # GET /ports/1/edit
@@ -69,6 +71,6 @@ class PortsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def port_params
-      params.fetch(:port, {})
+      params.require(:port).permit(:name, :latitude, :longitude, :photo_id)
     end
 end

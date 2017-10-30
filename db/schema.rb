@@ -89,8 +89,6 @@ ActiveRecord::Schema.define(version: 20171026201423) do
     t.string "lastname"
     t.string "username"
     t.string "password"
-    t.string "user_type"
-    t.bigint "address_id"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -103,7 +101,6 @@ ActiveRecord::Schema.define(version: 20171026201423) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -112,5 +109,4 @@ ActiveRecord::Schema.define(version: 20171026201423) do
   add_foreign_key "job_boats", "boats"
   add_foreign_key "job_boats", "jobs"
   add_foreign_key "ports", "photos"
-  add_foreign_key "users", "addresses"
 end

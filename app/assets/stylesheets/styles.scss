@@ -2,6 +2,9 @@
   height: 20px;
   width: 80%;
 }
+#yield_container {
+  margin-top: 100px;
+}
 html, body {
   height: 98%;
   background-color: #DCBFAA;
@@ -22,7 +25,6 @@ html, body {
   font-size: 30px;
   margin-left: 1%;
   margin-right: 1%;
-  position: fixed;
   background-color: #713244;
   color: #EDE2DB;
   text-align: center;
@@ -38,9 +40,9 @@ html, body {
   background-color: #A57569;
 }
 .person {
-  height: 100px;
+  height: 120px;
   width: 120px;
-  margin-top: -300px;
+  margin-top: 80px;
   margin-left: 10px;
   margin-right: 22px;
   padding: 10px;
@@ -62,7 +64,7 @@ html, body {
 #footer {
   height: 42px;
   width: 96%;
-  position: fixed;
+  position: absolute;
   text-align: center;
   bottom: 0;
   background-color: #713244;
