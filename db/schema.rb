@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(version: 20171027145739) do
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
+    t.bigint "boat_id"
+    t.index ["boat_id"], name: "index_photos_on_boat_id"
   end
 
   create_table "ports", force: :cascade do |t|
@@ -89,6 +91,8 @@ ActiveRecord::Schema.define(version: 20171027145739) do
     t.string "lastname"
     t.string "username"
     t.string "password"
+    t.string "user_type"
+    t.bigint "address_id"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -101,6 +105,7 @@ ActiveRecord::Schema.define(version: 20171027145739) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -108,5 +113,7 @@ ActiveRecord::Schema.define(version: 20171027145739) do
   add_foreign_key "boats", "photos"
   add_foreign_key "job_boats", "boats"
   add_foreign_key "job_boats", "jobs"
+  add_foreign_key "photos", "boats"
   add_foreign_key "ports", "photos"
+  add_foreign_key "users", "addresses"
 end
