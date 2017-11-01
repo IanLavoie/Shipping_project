@@ -35,19 +35,37 @@
       <%= link_to "Sign up", new_user_registration_path %>
       <%= link_to "Sign in", new_user_session_path %>
     <% else %>
+<<<<<<< HEAD
       <%= link_to "Photos", photos_path %> <br>
       <%= link_to "Profile", user_path(current_user) %> <br>
       <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
       <%= link_to "All_users", users_path %>
+=======
+
+      <div class="nav_btn">
+        <%= link_to "Profile", user_path(current_user) %>
+        <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+        <%= link_to "All_users", users_path %>
+        <%= link_to "Photos", new_photo_path %>
+
+>>>>>>> e03226832c0be3e31e22f36ba18d7ecbe9f67bf6
         <%= current_user.email %>
       </div>
     <% end %>
   </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> e03226832c0be3e31e22f36ba18d7ecbe9f67bf6
   <div id="yield_container">
   <%= yield %>
   </div>
     <div id="footer">
       <h1 class="contact_info"><p class="contact">Contact Us:</p>Contact Us: Email: Weshipawesomestuff@aol.com | Phone:1800-867-5309 | Fax: "Fax info" | Mailing address: 1600 Pennsylvania Ave NW, Washington, DC 20500</h1>
     </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> e03226832c0be3e31e22f36ba18d7ecbe9f67bf6
   </body>
 </html>
