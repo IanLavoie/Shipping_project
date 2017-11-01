@@ -34,7 +34,8 @@ class JobsController < ApplicationController
   def create
       puts "\n******* create *******"
       @job = Job.new(job_params)
-
+      @users = User.all
+      @ports = Port.all
       respond_to do |format|
           if @job.save(job_params)
               puts "******* JOB SAVED *******"
